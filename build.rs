@@ -1,7 +1,4 @@
 // [[file:~/Workspace/Programming/rust-libs/l-bfgs-b-c/lbfgsb.note::*build.rs][build.rs:1]]
-use bindgen;
-use cc;
-
 use std::collections::HashSet;
 use std::env;
 use std::path::PathBuf;
@@ -49,13 +46,10 @@ fn main() {
     let bindings = bindgen::Builder::default()
         .header("lib/src/lbfgsb.h")
         .parse_callbacks(Box::new(ignored_macros))
-        .rustfmt_bindings(true)
         .generate()
         .expect("Unable to generate bindings");
 
     let out_path = PathBuf::from(env::var("OUT_DIR").unwrap());
-    bindings
-        .write_to_file(out_path.join("bindings.rs"))
-        .expect("Couldn't write bindings!");
+    bindings.write_to_file(out_path.join("bindings.rs")).expect("Couldn't write bindings!");
 }
 // build.rs:1 ends here

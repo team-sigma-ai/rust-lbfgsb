@@ -57,12 +57,7 @@ pub struct LbfgsbParameter {
 
 impl Default for LbfgsbParameter {
     fn default() -> Self {
-        Self {
-            m: 5,
-            factr: 1E7,
-            pgtol: 1E-5,
-            iprint: -1,
-        }
+        Self { m: 5, factr: 1E7, pgtol: 1E-5, iprint: -1 }
     }
 }
 // param:1 ends here
@@ -87,15 +82,7 @@ where
 {
     pub fn build(x: Vec<f64>, eval_fn: E) -> Self {
         let n = x.len();
-        Self {
-            x,
-            g: vec![0.0; n],
-            f: 0.0,
-            l: vec![0.0; n],
-            u: vec![0.0; n],
-            nbd: vec![0; n],
-            eval_fn,
-        }
+        Self { x, g: vec![0.0; n], f: 0.0, l: vec![0.0; n], u: vec![0.0; n], nbd: vec![0; n], eval_fn }
     }
 
     /// Set lower bounds and upper bounds for input variables
@@ -350,7 +337,7 @@ where
 
     let param = LbfgsbParameter::default();
     let mut problem = LbfgsbProblem::build(x, eval_fn);
-    let bounds = bounds.into_iter().copied().map(|(l, u)| (Some(l), Some(u)));
+    let bounds = bounds.iter().copied().map(|(l, u)| (Some(l), Some(u)));
     problem.set_bounds(bounds);
 
     let mut state = LbfgsbState::new(problem, param);
