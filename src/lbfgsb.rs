@@ -1,3 +1,11 @@
+//! L-BFGS-B settings: https://github.com/scipy/scipy/blob/v1.10.1/scipy/optimize/_lbfgsb_py.py#LL210C1-L214C68
+//! def _minimize_lbfgsb(fun, x0, args=(), jac=None, bounds=None,
+//!              disp=None, maxcor=10, ftol=2.2204460492503131e-09,
+//!              gtol=1e-5, eps=1e-8, maxfun=15000, maxiter=15000,
+//!              iprint=-1, callback=None, maxls=20,
+//!              finite_diff_rel_step=None, **unknown_options):
+//!
+
 // [[file:../lbfgsb.note::*imports][imports:1]]
 use crate::*;
 use bindings::{FG, FG_END, NEW_X, START};
@@ -57,7 +65,8 @@ pub struct LbfgsbParameter {
 
 impl Default for LbfgsbParameter {
     fn default() -> Self {
-        Self { m: 5, factr: 1E7, pgtol: 1E-5, iprint: -1 }
+        // Self { m: 5, factr: 1E7, pgtol: 1E-5, iprint: -1 } // default in fortran
+        Self { m: 10, factr: 1E7, pgtol: 1E-5, iprint: -1 }
     }
 }
 // param:1 ends here
@@ -229,10 +238,11 @@ where
         let n = problem.x.len();
         let m = param.m;
         // wa is a double precision working array of length
-        //   (2mmax + 5)nmax + 12mmax^2 + 12mmax.
+        //  Scikit-Learn: wa = zeros(2*m*n + 5*n + 11*m*m + 8*m, float64)
         let wa = vec![0.0; 2 * m * n + 5 * n + 11 * m * m + 8 * m];
 
         // iwa is an integer working array of length 3nmax.
+        //  Scikit-Learn: iwa = zeros(3*n, fortran_int)
         let iwa = vec![0; 3 * n];
 
         Self {
@@ -259,6 +269,7 @@ where
         let param = &self.param;
         let n = x.len();
         let m = param.m;
+
         loop {
             unsafe {
                 crate::setulb(
