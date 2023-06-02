@@ -1,11 +1,11 @@
 // [[file:~/Workspace/Programming/rust-libs/l-bfgs-b-c/lbfgsb.note::*include][include:1]]
 #![allow(nonstandard_style)]
 
+#[allow(dead_code)]
 #[allow(clippy::all)]
 mod bindings {
     include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 }
-// pub use bindings::*;
 
 use bindings::{integer, logical};
 

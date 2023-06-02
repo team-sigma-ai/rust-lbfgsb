@@ -17,7 +17,7 @@ use anyhow::Result;
 // #define IS_FG(x) ( ((x)>=FG) ?  ( ((x)<=FG_END) ? 1 : 0 ) : 0 )
 fn is_fg(task: i64) -> bool {
     let task = task as u32;
-    task >= FG && task <= FG_END
+    (FG..=FG_END).contains(&task)
 }
 // util:1 ends here
 
