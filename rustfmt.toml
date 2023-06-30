@@ -2,3 +2,13 @@ edition = "2021"
 reorder_modules = false
 use_small_heuristics = "Max"
 max_width = 110
+
+# Run 'cargo +nightly fmt' to format the code
+# Requires nightly version of rustfmt
+#
+# unstable_features = true
+# version = "Two"
+# format_macro_bodies = true
+# format_macro_matchers = true
+# group_imports = "StdExternalCrate"
+# comment_width = 100
