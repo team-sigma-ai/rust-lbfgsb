@@ -66,7 +66,8 @@ pub struct LbfgsbParameter {
 impl Default for LbfgsbParameter {
     fn default() -> Self {
         // Self { m: 5, factr: 1E7, pgtol: 1E-5, iprint: -1 } // default in fortran
-        Self { m: 10, factr: 1E7, pgtol: 1E-5, iprint: -1 }
+        // Self { m: 10, factr: 1E7, pgtol: 1E-5, iprint: -1 }
+        Self { m: 5, factr: 1E6, pgtol: 1E-1, iprint: -1 }
     }
 }
 // param:1 ends here
