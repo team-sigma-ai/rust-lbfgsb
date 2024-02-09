@@ -1,9 +1,12 @@
 # [[file:~/Workspace/Programming/rust-libs/l-bfgs-b-c/lbfgsb.note::*cargo][cargo:1]]
 [package]
 name = "lbfgsb"
-edition = "2018"
+edition = "2021"
 version = "0.0.2"
+description = "Rust wrapper for L-BFGS-B-C, a C version of the L-BFGS-B algorithm by Stephen Becker"
 authors = ["Wenping Guo <ybyygu@gmail.com>"]
+license = "BSD-3-Clause"
+readme = "README.md"
 
 [dependencies]
 anyhow = "1"

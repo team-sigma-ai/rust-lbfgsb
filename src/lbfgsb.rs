@@ -273,6 +273,7 @@ where
 
         loop {
             unsafe {
+                #[allow(clashing_extern_declarations)]
                 crate::setulb(
                     &(n as i64),             //x
                     &(m as i64),             //x
@@ -349,7 +350,7 @@ where
 
     let param = LbfgsbParameter::default();
     let mut problem = LbfgsbProblem::build(x, eval_fn);
-    let bounds = bounds.iter().copied().map(|(l, u)| (Some(l), Some(u)));
+    let bounds = bounds.into_iter().copied().map(|(l, u)| (Some(l), Some(u)));
     problem.set_bounds(bounds);
 
     let mut state = LbfgsbState::new(problem, param);
