@@ -1,7 +1,5 @@
 // [[file:~/Workspace/Programming/rust-libs/l-bfgs-b-c/lbfgsb.note::*build.rs][build.rs:1]]
-use std::collections::HashSet;
-use std::env;
-use std::path::PathBuf;
+use std::{collections::HashSet, env, path::PathBuf};
 
 #[derive(Debug)]
 struct IgnoreMacros(HashSet<String>);

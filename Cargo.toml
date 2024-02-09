@@ -10,7 +10,7 @@ anyhow = "1"
 
 [build-dependencies]
 cc = "1"
-bindgen = "0.65.1"
+bindgen = "0.69"
 
 [dev-dependencies]
 vecfx = { version = "0.1" }

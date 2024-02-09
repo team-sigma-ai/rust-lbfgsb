@@ -7,7 +7,7 @@
 //!
 
 // [[file:../lbfgsb.note::*imports][imports:1]]
-use crate::*;
+use crate::bindings;
 use bindings::{FG, FG_END, NEW_X, START};
 
 use anyhow::Result;
@@ -300,7 +300,7 @@ where
                 // Compute function value f for the sample problem.
                 *f = (self.problem.eval_fn)(x, g)?;
             // go back to the minimization routine.
-            } else if self.task == NEW_X as i64 {
+            } else if self.task == i64::from(NEW_X) {
                 // the minimization routine has returned with a new iterate, and we have
                 // opted to continue the iteration.
             } else {
@@ -313,7 +313,7 @@ where
     }
 
     /// Final function value f(x)
-    pub fn fx(&self) -> f64 {
+    pub const fn fx(&self) -> f64 {
         self.problem.f
     }
 

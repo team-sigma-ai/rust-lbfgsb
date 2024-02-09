@@ -40,6 +40,5 @@ mod lbfgsb;
 // mods:1 ends here
 
 // [[file:~/Workspace/Programming/rust-libs/l-bfgs-b-c/lbfgsb.note::*exports][exports:1]]
-pub use crate::lbfgsb::lbfgsb;
-pub use crate::lbfgsb::LbfgsbState;
+pub use crate::lbfgsb::{lbfgsb, LbfgsbState};
 // exports:1 ends here
